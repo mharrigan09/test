@@ -45,7 +45,6 @@ test('shows empty state when no todos', async ({ page }) => {
 
 //Input validation — don’t add empty todos:
 
-js
 test('does not add an empty todo', async ({ page }) => {
   await page.click('button[type="submit"]');
   await expect(page.locator('.todo-item')).toHaveCount(0);
