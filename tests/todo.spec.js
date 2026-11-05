@@ -52,7 +52,6 @@ test('does not add an empty todo', async ({ page }) => {
 
 //Whitespace-only input:
 
-js
 test('does not add a whitespace-only todo', async ({ page }) => {
   await page.fill('#todo-input', '   ');
   await page.click('button[type="submit"]');
@@ -61,7 +60,6 @@ test('does not add a whitespace-only todo', async ({ page }) => {
 
 //Input clears after adding:
 
-js
 test('clears the input after adding a todo', async ({ page }) => {
   await page.fill('#todo-input', 'Buy milk');
   await page.click('button[type="submit"]');
@@ -70,7 +68,6 @@ test('clears the input after adding a todo', async ({ page }) => {
 
 //Submit with Enter key:
 
-js
 test('adds a todo by pressing Enter', async ({ page }) => {
   await page.fill('#todo-input', 'Press enter todo');
   await page.press('#todo-input', 'Enter');
@@ -79,7 +76,6 @@ test('adds a todo by pressing Enter', async ({ page }) => {
 
 //Persistence across page reload:
 
-js
 test('persists todos after page reload', async ({ page }) => {
   await page.fill('#todo-input', 'Persistent todo');
   await page.click('button[type="submit"]');
@@ -89,7 +85,6 @@ test('persists todos after page reload', async ({ page }) => {
 
 //Filter — completed:
 
-js
 test('filters by completed todos', async ({ page }) => {
   await page.fill('#todo-input', 'Done item');
   await page.click('button[type="submit"]');
@@ -103,7 +98,6 @@ test('filters by completed todos', async ({ page }) => {
 
 //Multiple todos:
 
-js
 test('can add multiple todos', async ({ page }) => {
   const items = ['First', 'Second', 'Third'];
   for (const item of items) {
