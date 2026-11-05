@@ -1,0 +1,101 @@
+/* Reset & base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+/* App container */
+.app {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+}
+
+h1 { font-size: 1.8rem; margin-bottom: 24px; color: #1a1a2e; }
+
+/* Form */
+#todo-form { display: flex; gap: 8px; margin-bottom: 20px; }
+#todo-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#todo-input:focus { border-color: #646cff; }
+#todo-form button {
+  padding: 10px 20px;
+  background: #646cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#todo-form button:hover { background: #5560e0; }
+
+/* Filters */
+.filters { display: flex; gap: 6px; margin-bottom: 16px; }
+.filter-btn {
+  padding: 6px 14px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.15s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: #646cff;
+  color: white;
+  border-color: #646cff;
+}
+
+/* Todo list */
+#todo-list { list-style: none; }
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+.todo-item:last-child { border-bottom: none; }
+
+.todo-checkbox {
+  width: 20px; height: 20px;
+  accent-color: #646cff;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.todo-text { flex: 1; font-size: 1rem; color: #1e293b; }
+.todo-text.done { text-decoration: line-through; color: #94a3b8; }
+.delete-btn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+.delete-btn:hover { color: #ef4444; }
+
+/* Empty state */
+#empty-state { text-align: center; color: #94a3b8; padding: 32px 0; }
+.hidden { display: none; }
