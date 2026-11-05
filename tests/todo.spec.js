@@ -41,3 +41,75 @@ test('filters by active todos', async ({ page }) => {
 test('shows empty state when no todos', async ({ page }) => {
   await expect(page.locator('#empty-state')).toBeVisible();
 });
+
+
+//Input validation — don’t add empty todos:
+
+js
+test('does not add an empty todo', async ({ page }) => {
+  await page.click('button[type="submit"]');
+  await expect(page.locator('.todo-item')).toHaveCount(0);
+});
+
+//Whitespace-only input:
+
+js
+test('does not add a whitespace-only todo', async ({ page }) => {
+  await page.fill('#todo-input', '   ');
+  await page.click('button[type="submit"]');
+  await expect(page.locator('.todo-item')).toHaveCount(0);
+});
+
+//Input clears after adding:
+
+js
+test('clears the input after adding a todo', async ({ page }) => {
+  await page.fill('#todo-input', 'Buy milk');
+  await page.click('button[type="submit"]');
+  await expect(page.locator('#todo-input')).toHaveValue('');
+});
+
+//Submit with Enter key:
+
+js
+test('adds a todo by pressing Enter', async ({ page }) => {
+  await page.fill('#todo-input', 'Press enter todo');
+  await page.press('#todo-input', 'Enter');
+  await expect(page.locator('.todo-text')).toHaveText('Press enter todo');
+});
+
+//Persistence across page reload:
+
+js
+test('persists todos after page reload', async ({ page }) => {
+  await page.fill('#todo-input', 'Persistent todo');
+  await page.click('button[type="submit"]');
+  await page.reload();
+  await expect(page.locator('.todo-text')).toHaveText('Persistent todo');
+});
+
+//Filter — completed:
+
+js
+test('filters by completed todos', async ({ page }) => {
+  await page.fill('#todo-input', 'Done item');
+  await page.click('button[type="submit"]');
+  await page.fill('#todo-input', 'Active item');
+  await page.click('button[type="submit"]');
+  await page.locator('.todo-checkbox').first().click();
+  await page.click('[data-filter="done"]');
+  await expect(page.locator('.todo-item')).toHaveCount(1);
+  await expect(page.locator('.todo-text')).toHaveText('Done item');
+});
+
+//Multiple todos:
+
+js
+test('can add multiple todos', async ({ page }) => {
+  const items = ['First', 'Second', 'Third'];
+  for (const item of items) {
+    await page.fill('#todo-input', item);
+    await page.click('button[type="submit"]');
+  }
+  await expect(page.locator('.todo-item')).toHaveCount(3);
+});
