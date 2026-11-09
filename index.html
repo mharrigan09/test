@@ -4,33 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>My Todo App</title>
-  <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-  <div class="app">
-    <h1>My Todos</h1>
-
-    <form id="todo-form">
-      <input
-        type="text"
-        id="todo-input"
-        placeholder="What needs to be done?"
-        autocomplete="off"
-      />
-      <button type="submit">Add</button>
-    </form>
-
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="active">Active</button>
-      <button class="filter-btn" data-filter="done">Completed</button>
-    </div>
-
-    <ul id="todo-list"></ul>
-
-    <p id="empty-state" class="hidden">No todos yet. Add one above!</p>
-  </div>
-
-  <script type="module" src="/src/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
